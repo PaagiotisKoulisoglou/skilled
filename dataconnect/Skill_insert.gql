@@ -1,0 +1,17 @@
+mutation {
+  skill_insert(
+    data: {
+      id: "11111111222233334444555555555558"
+      authorClerkId: "user_3Cr5RIHOb6Et5H9uGoGiPA4ZahH"
+      title: "Performance Tuner"
+      description: "Identify render bottlenecks and optimize expensive client-side work."
+      tags: ["profiling", "memoization", "web-vitals"]
+
+      installCommand: "npx skild add performance-tuner"
+      promptConfig: "You are a professional performance optimization engineer"
+      usageExample: "Review the code and optimize it"
+
+      # createdAt is auto → you can omit it
+    }
+  )
+}

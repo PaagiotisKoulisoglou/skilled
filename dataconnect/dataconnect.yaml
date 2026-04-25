@@ -1,0 +1,13 @@
+specVersion: "v1"
+serviceId: "skilled-cc52e-service"
+location: "us-east4"
+schemas:
+  - source: "./schema"
+    datasource:
+      postgresql:
+        database: "skilled-cc52e-database"
+        cloudSql:
+          instanceId: "skilled-cc52e-instance"
+          # schemaValidation: "STRICT"     # STRICT mode makes Postgres schema match Data Connect exactly.
+          # schemaValidation: "COMPATIBLE" # COMPATIBLE mode makes Postgres schema compatible with Data Connect.
+connectorDirs: ["./connectors"]
