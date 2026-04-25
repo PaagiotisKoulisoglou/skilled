@@ -7,10 +7,19 @@ import {
   Scripts,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import posthog from 'posthog-js'
+import { PostHogProvider } from 'posthog-js/react'
 import Crosshair from '#/components/CrossHair'
 import Navbar from '#/components/Navbar'
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import appCss from '../styles.css?url'
+
+if (typeof window !== 'undefined') {
+  posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
+    api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+    defaults: '2026-01-30',
+  })
+}
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -51,6 +60,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className='font-sans antialiased wrap-anywhere'>
+        <PostHogProvider client={posthog}>
         <ClerkProvider>
           <div id="root-layout">
             <header>
@@ -80,6 +90,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             ]}
           />
         </ClerkProvider>
+        </PostHogProvider>
         <Scripts />
       </body>
     </html>
